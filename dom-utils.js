@@ -60,7 +60,8 @@ const createListElement = (countries) => {
 
 export const renderCountriesList = (countries) => {
   const rootElement = document.querySelector('#root');
-   rootElement.appendChild(createListElement(countries))
+  rootElement.innerHTML = ""
+  rootElement.appendChild(createListElement(countries))
   // console.log(countries);
   //render country list into main element
 }
