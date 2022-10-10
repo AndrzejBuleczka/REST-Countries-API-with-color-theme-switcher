@@ -17,6 +17,7 @@ const createFlagImgElement = (country) => {
   const imgContainer = document.createElement('div')
   const imgElement = document.createElement('img');
   imgElement.src = country.flagUrl;
+  imgElement.alt = `${country.name} flag`
   imgContainer.appendChild(imgElement);
 
   return imgContainer
