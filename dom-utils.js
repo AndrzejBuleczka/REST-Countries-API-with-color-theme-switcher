@@ -26,6 +26,9 @@ const createFlagImgElement = (country) => {
 const createCountryItemElement = (country) => {
   const countryElement = document.createElement('li');
   const countryNameElement = document.createElement('strong');
+  const anchorElement = document.createElement('a');
+  anchorElement.href = `country=${country.name}`
+
   countryNameElement.innerText = country.name;
   countryNameElement.classList.add('country-name')
 
@@ -45,7 +48,8 @@ const createCountryItemElement = (country) => {
     createInfoElement('Capital', country.capital)
   );
 
-  countryElement.appendChild(infoContainerElement)
+  anchorElement.appendChild(infoContainerElement);
+  countryElement.appendChild(anchorElement);
 
   return countryElement;
 }
