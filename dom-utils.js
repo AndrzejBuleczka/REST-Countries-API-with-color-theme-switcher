@@ -17,36 +17,34 @@ const createFlagImgElement = (country) => {
   const imgContainer = document.createElement('div')
   const imgElement = document.createElement('img');
   imgElement.src = country.flagUrl;
-  imgElement.width = 160;
-  imgElement.height = 98;
-
-  imgContainer.appendChild(imgElement)
+  imgContainer.appendChild(imgElement);
 
   return imgContainer
 }
 
 const createCountryItemElement = (country) => {
   const countryElement = document.createElement('li');
-  const countryNameElement = document.createElement('span');
+  const countryNameElement = document.createElement('strong');
   countryNameElement.innerText = country.name;
+  countryNameElement.classList.add('country-name')
 
-  countryElement.appendChild(createFlagImgElement(country))
+  countryElement.appendChild(createFlagImgElement(country));
 
-  countryElement.appendChild(countryNameElement)
+  const infoContainerElement = document.createElement('div');
+  infoContainerElement.classList.add('info-container')
 
-
-
-  countryElement.appendChild(
+  infoContainerElement.appendChild(countryNameElement);
+  infoContainerElement.appendChild(
   createInfoElement('Population', country.population)
   );
-
-  countryElement.appendChild(
+  infoContainerElement.appendChild(
     createInfoElement('Region', country.region)
   );
-  countryElement.appendChild(
+  infoContainerElement.appendChild(
     createInfoElement('Capital', country.capital)
   );
 
+  countryElement.appendChild(infoContainerElement)
 
   return countryElement;
 }
@@ -60,7 +58,7 @@ const createListElement = (countries) => {
 }
 
 export const renderCountriesList = (countries) => {
-  const rootElement = document.querySelector('#main');
+  const rootElement = document.querySelector('#root');
    rootElement.appendChild(createListElement(countries))
   // console.log(countries);
   //render country list into main element
