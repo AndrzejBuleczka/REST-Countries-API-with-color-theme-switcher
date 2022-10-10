@@ -1,9 +1,9 @@
-import { renderCountriesList } from "./dom-utils.js";
 import { renderDashboard } from "./view-dashboard.js";
+import { renderDetails } from "./view-detail.js";
 
 if (window.location.search.includes("?country=")) {
-  console.log('render detail');
+  renderDetails();
 } else {
+  document.querySelector('.filters').classList.add('active')
   renderDashboard();
-
   }

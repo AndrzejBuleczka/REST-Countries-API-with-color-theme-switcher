@@ -1,4 +1,6 @@
-export const renderDashboard () => {
+import { renderCountriesList } from "./dom-utils.js";
+
+export const renderDashboard = () => {
   const API_URL_ALL = "https://restcountries.com/v3.1/all";
   let countries;
   let query = "";
