@@ -27,7 +27,7 @@ const createCountryItemElement = (country) => {
   const countryElement = document.createElement('li');
   const countryNameElement = document.createElement('strong');
   const anchorElement = document.createElement('a');
-  anchorElement.href = `country=${country.name}`
+  anchorElement.href = `?country=${country.code}`;
 
   countryNameElement.innerText = country.name;
   countryNameElement.classList.add('country-name')
@@ -62,10 +62,35 @@ const createListElement = (countries) => {
   return listElement;
 }
 
+const createDetailElement = (country) => {
+  const detailContainerElement = document.createElement('div');
+  const flagImgElement = createFlagImgElement(country);
+  const detailNameElement = document.createElement('strong');
+  detailNameElement.innerText = country.name; 
+  detailContainerElement.appendChild(flagImgElement);
+  detailContainerElement.appendChild(detailNameElement);
+
+  detailContainerElement.appendChild(createInfoElement('Native name', country.nativeName));
+  detailContainerElement.appendChild(createInfoElement('Population', country.population));
+  detailContainerElement.appendChild(createInfoElement('Region', country.region));
+  detailContainerElement.appendChild(createInfoElement('Sub Region', country.subRegion));
+  detailContainerElement.appendChild(createInfoElement('Top Level Domain', country.topLevelDomain));
+  detailContainerElement.appendChild(createInfoElement('Currencies', country.currencies));
+  detailContainerElement.appendChild(createInfoElement('Languages', country.languages));
+
+  return detailContainerElement
+}
+
 export const renderCountriesList = (countries) => {
   const rootElement = document.querySelector('#root');
-  rootElement.innerHTML = ""
+  rootElement.innerHTML = "";
   rootElement.appendChild(createListElement(countries))
   // console.log(countries);
   //render country list into main element
+}
+
+export const renderCountryDetails = (country) => {  
+  const rootElement = document.querySelector('#root');
+  rootElement.innerHTML = '';
+  rootElement.appendChild(createDetailElement(country))
 }
