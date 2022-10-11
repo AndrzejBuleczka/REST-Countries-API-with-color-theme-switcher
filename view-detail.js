@@ -20,7 +20,7 @@ export const renderDetails = () => {
         capital: country.capital && country.capital[0],
         population: country.population.toLocaleString(),
         name: country.name.common,
-        nativeName: country.name.nativeName,
+        nativeName: Object.values(country.name.nativeName)[0].official,
         code: country.cioc,
         region: country.region,
         subRegion: country.subregion,
@@ -29,7 +29,8 @@ export const renderDetails = () => {
         currencies: Object.values(country.currencies)
           .map(currency => currency.name)
           .join(', '),
-        languages: Object.values(country.languages).join(', ')
+        languages: Object.values(country.languages).join(', '),
+        borders: country.border,
       };
 
       renderCountryDetails(country)

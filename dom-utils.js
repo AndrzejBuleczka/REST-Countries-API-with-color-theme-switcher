@@ -81,7 +81,26 @@ const createDetailElement = (country) => {
   return detailContainerElement
 }
 
+const createDetailButtonElement = (link, text) => {
+  const anchorBackElement = document.createElement('a');
+  anchorBackElement.innerHTML =  text;
+  anchorBackElement.classList.add('back-button');
+  anchorBackElement.href = link;
+
+  return anchorBackElement;
+}
+
+const createBorderCountriesContainer = (country) => {
+  const borderCountriesContainerElement = document.createElement('div');
+
+  const labelBorderElement = document.createElement('strong')
+  labelBorderElement.innerText = 'Border Countries'
+}
+
 export const renderCountriesList = (countries) => {
+  if (!country.borders || country.borders.length === 0) {
+    return;
+  }
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = "";
   rootElement.appendChild(createListElement(countries))
@@ -92,5 +111,6 @@ export const renderCountriesList = (countries) => {
 export const renderCountryDetails = (country) => {  
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
+  rootElement.appendChild(createDetailButtonElement('/', '<i class="fa-sharp fa-solid fa-arrow-left"></i> Back'))
   rootElement.appendChild(createDetailElement(country))
 }
