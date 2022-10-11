@@ -70,7 +70,7 @@ header {
 }
 
 #region {
-  width: 30%;
+  width: 20%;
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
@@ -169,9 +169,13 @@ body.light {
   background-color: var(--color-background);
 }
 
-header.light, #query.light, #region.light, li.light, li a.light, .mode.light, .detail-button.light {
+header.light, #query.light, li.light, li a.light, .mode.light, .detail-button.light {
  background-color: var(--color-white);
  color: var(--color-text);
+}
+
+#region.light {
+  background-color: var(--color-input);
 }
 
 
