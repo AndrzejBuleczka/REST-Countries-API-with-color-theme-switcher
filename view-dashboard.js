@@ -22,8 +22,6 @@ export const renderDashboard = () => {
       renderCountriesList(countries)
     });
 
-    
-
     const filterDataAndRenderCountriesList = () => {
       const filteredCountries = countries.filter(country => {
         return country.name.toLowerCase().includes(query) && (!region || country.region === region)
