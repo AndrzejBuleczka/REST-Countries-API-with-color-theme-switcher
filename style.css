@@ -16,8 +16,6 @@
 body {
   font-family: 'Nunito Sans', sans-serif;
   font-size: 14px;
-  color: var(--color-text);
-  background-color: var(--color-background);
 }
 
 
@@ -28,7 +26,6 @@ main {
 }
 
 header {
-  background-color: var(--color-white);
   margin-bottom: 32px;
   box-shadow: 0px 3px 3px -5px;
 }
@@ -70,7 +67,6 @@ header {
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
-  background-color: var(--color-white);
   box-shadow: 0px 3px 3px -4px var(--color-text);
 }
 
@@ -79,7 +75,6 @@ header {
   padding: 15px 30px;
   border: none;
   border-radius: 5px;
-  background-color: var(--color-white);
   box-shadow: 0px 3px 3px -4px var(--color-text);
 }
 
@@ -97,12 +92,10 @@ ul {
 li {
   border-radius: 10px;
   overflow: hidden;
-  background-color: var(--color-white);
   box-shadow: 0px 3px 3px 0px var(--color-text);
 }
 
 li a {
-  color: var(--color-text);
   text-decoration: none;
 }
 
@@ -171,6 +164,19 @@ li img {
   margin: 30px 0;
 }
 
+/* Light Mode */
+
+body.light {
+  color: var(--color-text);
+  background-color: var(--color-background);
+}
+
+header.light, #query.light, #region.light, li.light, li a.light, .mode.light, .detail-button.light {
+ background-color: var(--color-white);
+ color: var(--color-text);
+}
+
+
 /* Dark Mode */
 
 body.dark {
@@ -178,7 +184,7 @@ body.dark {
   background-color: var(--color-dark-background);
 }
 
-header.dark, #query.dark, #region.dark, li.dark, li a.dark, .mode.dark {
+header.dark, #query.dark, #region.dark, li.dark, li a.dark, .mode.dark, .detail-button.dark {
  background-color: var(--color-dark-mode);
  color: var(--color-white);
 }
@@ -205,5 +211,17 @@ header.dark, #query.dark, #region.dark, li.dark, li a.dark, .mode.dark {
 @media only screen and (max-width: 400px) {
   ul {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--color-white);
+    background-color: var(--color-dark-background);
+  }
+  
+  header, #query, #region, li, li a, .mode, .detail-button {
+   background-color: var(--color-dark-mode);
+   color: var(--color-white);
   }
 }

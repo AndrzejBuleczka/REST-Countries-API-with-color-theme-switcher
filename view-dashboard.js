@@ -22,55 +22,7 @@ export const renderDashboard = () => {
       renderCountriesList(countries)
     });
 
-    let theme = localStorage.getItem('theme') || 'light';
-
-    const modeSwitchingButton = document.querySelector('.mode');
-
-    modeSwitchingButton.addEventListener('click', () => {
-      // document.querySelector('body').classList.toggle('dark');
-      // document.querySelector('header').classList.toggle('dark');
-      // document.querySelector('#query').classList.toggle('dark');
-      // document.querySelector('#region').classList.toggle('dark');
-      // document.querySelectorAll('li').forEach(li => li.classList.toggle('dark'));
-      // document.querySelectorAll('li a').forEach(a => a.classList.toggle('dark'));
-      // modeSwitchingButton.classList.toggle('dark');
-      // document.querySelector('i').classList.toggle('fa-solid');
-      if (theme === 'dark') {
-        document.querySelector('body').classList.remove('dark');
-        document.querySelector('header').classList.remove('dark');
-        document.querySelector('#query').classList.remove('dark');
-        document.querySelector('#region').classList.remove('dark');
-        document.querySelectorAll('li').forEach(li => li.classList.remove('dark'));
-        document.querySelectorAll('li a').forEach(a => a.classList.remove('dark'));
-        modeSwitchingButton.classList.remove('dark');
-        document.querySelector('i').classList.remove('fa-solid');
-        theme = 'light';
-      } else {
-        document.querySelector('body').classList.add('dark');
-        document.querySelector('header').classList.add('dark');
-        document.querySelector('#query').classList.add('dark');
-        document.querySelector('#region').classList.add('dark');
-        document.querySelectorAll('li').forEach(li => li.classList.add('dark'));
-        document.querySelectorAll('li a').forEach(a => a.classList.add('dark'));
-        modeSwitchingButton.classList.add('dark');
-        document.querySelector('i').classList.add('fa-solid');
-        theme = 'dark';
-      }
-      localStorage.setItem('theme', theme);
-    })
-    console.log(theme);
-
-    if (theme === 'dark') {
-      document.querySelector('body').classList.add('dark');
-      document.querySelector('header').classList.add('dark');
-      document.querySelector('#query').classList.add('dark');
-      document.querySelector('#region').classList.add('dark');
-      document.querySelectorAll('li').forEach(li => li.classList.add('dark'));
-      document.querySelectorAll('li a').forEach(a => a.classList.add('dark'));
-      modeSwitchingButton.classList.add('dark');
-      document.querySelector('i').classList.add('fa-solid');
-    }
-
+    
 
     const filterDataAndRenderCountriesList = () => {
       const filteredCountries = countries.filter(country => {
