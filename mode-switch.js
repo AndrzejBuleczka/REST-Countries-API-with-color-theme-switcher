@@ -1,4 +1,4 @@
-let theme = localStorage.getItem('theme') || 'light';
+let theme = localStorage.getItem('theme');
 
 const modeSwitchingButton = document.querySelector('.mode');
 
@@ -60,4 +60,16 @@ modeSwitchingButton.addEventListener('click', () => {
       modeSwitchingButton.classList.add('dark');
       document.querySelector('i').classList.add('fa-solid');
       document.querySelectorAll('.detail-button').forEach(btn => btn.classList.add('dark'));
+    }
+
+    if (theme === 'light') {
+      document.querySelector('body').classList.add('light');
+      document.querySelector('header').classList.add('light');
+      document.querySelector('#query').classList.add('light');
+      document.querySelector('#region').classList.add('light');
+      document.querySelectorAll('li').forEach(li => li.classList.add('light'));
+      document.querySelectorAll('li a').forEach(a => a.classList.add('light'));
+      modeSwitchingButton.classList.add('light');
+      document.querySelector('i').classList.add('fa-regular');
+      document.querySelectorAll('.detail-button').forEach(btn => btn.classList.add('light'));
     }
