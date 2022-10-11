@@ -93,24 +93,31 @@ const createDetailButtonElement = (link, text) => {
 const createBorderCountriesContainer = (country) => {
   const borderCountriesContainerElement = document.createElement('div');
 
-  const labelBorderElement = document.createElement('strong')
-  labelBorderElement.innerText = 'Border Countries'
+  const labelBorderElement = document.createElement('strong');
+  labelBorderElement.innerText = 'Border Countries';
+  borderCountriesContainerElement.appendChild(labelBorderElement);
+
+  country.borders.forEach((border) => {
+    borderCountriesContainerElement.appendChild(
+      createDetailButtonElement(`/?country=${border}`, border)
+      );
+  })
+  return borderCountriesContainerElement;
 }
 
 export const renderCountriesList = (countries) => {
-  if (!country.borders || country.borders.length === 0) {
-    return;
-  }
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = "";
   rootElement.appendChild(createListElement(countries))
-  // console.log(countries);
-  //render country list into main element
 }
 
 export const renderCountryDetails = (country) => {  
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
-  rootElement.appendChild(createDetailButtonElement('/', '<i class="fa-sharp fa-solid fa-arrow-left"></i> Back'))
-  rootElement.appendChild(createDetailElement(country))
+  rootElement.appendChild(createDetailButtonElement('/', '<i class="fa-sharp fa-solid fa-arrow-left"></i> Back'));
+  rootElement.appendChild(createDetailElement(country));
+  if (country.borders && country.borders.length > 0) {
+    rootElement.appendChild(createBorderCountriesContainer(country))
+  }
+  
 }
