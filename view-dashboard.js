@@ -22,12 +22,26 @@ export const renderDashboard = () => {
       renderCountriesList(countries)
     });
 
+
+    const modeSwitchingButton = document.querySelector('.mode');
+
+    modeSwitchingButton.addEventListener('click', () => {
+      document.querySelector('body').classList.toggle('dark');
+      document.querySelector('header').classList.toggle('dark');
+      document.querySelector('#query').classList.toggle('dark');
+      document.querySelector('#region').classList.toggle('dark');
+      document.querySelectorAll('li').forEach(li => li.classList.toggle('dark'));
+      document.querySelectorAll('li a').forEach(a => a.classList.toggle('dark'));
+      modeSwitchingButton.classList.toggle('dark');
+      document.querySelector('i').classList.toggle('fa-solid');
+      // modeSwitchingButton.innerHTML = '<i class="fa-solid fa-moon"></i>Dark Mode'
+    })
+
     const filterDataAndRenderCountriesList = () => {
       const filteredCountries = countries.filter(country => {
         return country.name.toLowerCase().includes(query) && (!region || country.region === region)
       })
     
-
       renderCountriesList(filteredCountries)
     }
 
