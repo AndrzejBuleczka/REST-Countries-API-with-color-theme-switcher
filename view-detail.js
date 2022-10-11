@@ -3,7 +3,6 @@ import { renderCountryDetails } from "./dom-utils.js";
 export const renderDetails = () => {
   const searchParams = new URLSearchParams(window.location.search);
   const countryCode = searchParams.get('country');
-  console.log(countryCode);
   if (!countryCode) {
     goBacktoDashboard();
   } 

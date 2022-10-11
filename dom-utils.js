@@ -1,3 +1,4 @@
+// Creators for Dashboard view
 const createInfoElement = (labelName, value) => {
   const infoElement = document.createElement('div');
 
@@ -62,21 +63,47 @@ const createListElement = (countries) => {
   return listElement;
 }
 
+// Creators of Detail View
+
 const createDetailElement = (country) => {
   const detailContainerElement = document.createElement('div');
+  detailContainerElement.classList.add('detail-container');
+
   const flagImgElement = createFlagImgElement(country);
+  flagImgElement.classList.add('flag-element');
+  
+  const detailContentElement = document.createElement('div')
+  detailContentElement.classList.add('detail-content')
+  
+  const leftColumnElement = document.createElement('div');
+  leftColumnElement.classList.add('left-column') 
+
+  const rightColumnElement = document.createElement('div');
+  rightColumnElement.classList.add('right-column')
+
   const detailNameElement = document.createElement('strong');
   detailNameElement.innerText = country.name; 
-  detailContainerElement.appendChild(flagImgElement);
-  detailContainerElement.appendChild(detailNameElement);
+  detailNameElement.classList.add('detail-name')
 
-  detailContainerElement.appendChild(createInfoElement('Native name', country.nativeName));
-  detailContainerElement.appendChild(createInfoElement('Population', country.population));
-  detailContainerElement.appendChild(createInfoElement('Region', country.region));
-  detailContainerElement.appendChild(createInfoElement('Sub Region', country.subRegion));
-  detailContainerElement.appendChild(createInfoElement('Top Level Domain', country.topLevelDomain));
-  detailContainerElement.appendChild(createInfoElement('Currencies', country.currencies));
-  detailContainerElement.appendChild(createInfoElement('Languages', country.languages));
+  detailContainerElement.appendChild(flagImgElement);
+  detailContentElement.appendChild(detailNameElement);
+
+  leftColumnElement.appendChild(createInfoElement('Native name', country.nativeName));
+  leftColumnElement.appendChild(createInfoElement('Population', country.population));
+  leftColumnElement.appendChild(createInfoElement('Region', country.region));
+  leftColumnElement.appendChild(createInfoElement('Sub Region', country.subRegion));
+  rightColumnElement.appendChild(createInfoElement('Top Level Domain', country.topLevelDomain));
+  rightColumnElement.appendChild(createInfoElement('Currencies', country.currencies));
+  rightColumnElement.appendChild(createInfoElement('Languages', country.languages));
+
+  detailContentElement.appendChild(leftColumnElement);
+  detailContentElement.appendChild(rightColumnElement);
+
+  if (country.borders && country.borders.length > 0) {
+    detailContentElement.appendChild(createBorderCountriesContainer(country))
+  }
+
+  detailContainerElement.appendChild(detailContentElement);
 
   return detailContainerElement
 }
@@ -84,7 +111,7 @@ const createDetailElement = (country) => {
 const createDetailButtonElement = (link, text) => {
   const anchorBackElement = document.createElement('a');
   anchorBackElement.innerHTML =  text;
-  anchorBackElement.classList.add('back-button');
+  anchorBackElement.classList.add('detail-button');
   anchorBackElement.href = link;
 
   return anchorBackElement;
@@ -92,9 +119,9 @@ const createDetailButtonElement = (link, text) => {
 
 const createBorderCountriesContainer = (country) => {
   const borderCountriesContainerElement = document.createElement('div');
-
+  borderCountriesContainerElement.classList.add('border-countries-container')
   const labelBorderElement = document.createElement('strong');
-  labelBorderElement.innerText = 'Border Countries';
+  labelBorderElement.innerText = 'Border Countries: ';
   borderCountriesContainerElement.appendChild(labelBorderElement);
 
   country.borders.forEach((border) => {
@@ -105,6 +132,8 @@ const createBorderCountriesContainer = (country) => {
   return borderCountriesContainerElement;
 }
 
+//rendering of both views
+
 export const renderCountriesList = (countries) => {
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = "";
@@ -114,10 +143,6 @@ export const renderCountriesList = (countries) => {
 export const renderCountryDetails = (country) => {  
   const rootElement = document.querySelector('#root');
   rootElement.innerHTML = '';
-  rootElement.appendChild(createDetailButtonElement('/', '<i class="fa-sharp fa-solid fa-arrow-left"></i> Back'));
+  rootElement.appendChild(createDetailButtonElement('/', '<i class="fa-solid fa-arrow-left-long"></i>  Back'));
   rootElement.appendChild(createDetailElement(country));
-  if (country.borders && country.borders.length > 0) {
-    rootElement.appendChild(createBorderCountriesContainer(country))
-  }
-  
 }
